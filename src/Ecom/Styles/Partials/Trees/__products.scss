@@ -1,0 +1,137 @@
+h1 {
+  color: rgb(104, 104, 104);
+  font-size: 40px;
+  font-weight: bold;
+  text-align: center;
+  margin: 0 auto 30px auto;
+}
+
+h1::after {
+  border-top: solid rgb(104, 104, 104) 2px;
+  display: block;
+  content: "border";
+  font-size: 0px;
+  margin: 20px auto 0 auto;
+  width: 50%;
+}
+
+.filter-title {
+  color: #52b788;
+  font-size: 27px;
+  font-weight: bold;
+  margin: 0 0 10px 30px;
+}
+
+.filter-title::after {
+  border-top: solid #52b788 2px;
+  display: block;
+  content: "border";
+  font-size: 0px;
+  margin-top: 10px;
+  width: 30%;
+}
+
+.filter-container {
+  display: flex;
+
+  .filters {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin: 0 auto 70px auto;
+
+    &__size,
+    &__price {
+      background-color: inherit;
+      border: none;
+      color: rgb(104, 104, 104);
+      font-size: 17px;
+      margin: 7px;
+      padding: 10px;
+    }
+
+    &__reset {
+      background-color: inherit;
+      border: none;
+      color: #52b788;
+      font-size: 25px;
+      margin: 7px;
+      padding: 10px;
+      text-transform: uppercase;
+    }
+
+    // active-filter is a div and direct child of
+    // the button .filters__size that will be
+    // styled based on the active filter
+    // in state
+    .active-filter {
+      transition: 0.3s;
+    }
+  }
+}
+
+// .products is the section containing the products
+
+.products {
+  display: flex;
+  flex-wrap: wrap;
+
+  .product {
+    margin: 0 auto 70px auto;
+    width: 270px;
+
+    img {
+      box-shadow: 1px 1px 10px;
+      height: 350px;
+      margin-bottom: 10px;
+      text-align: center;
+      width: 270px;
+    }
+
+    figcaption {
+      color: #52b788;
+      font-size: 40px;
+      font-weight: bold;
+    }
+
+    &__desc {
+      color: rgb(104, 104, 104);
+      line-height: 24px;
+      margin-top: 10px;
+    }
+
+    &__price,
+    &__size {
+      color: rgb(104, 104, 104);
+      font-size: 20px;
+      font-weight: bold;
+      margin-top: 10px;
+    }
+  }
+}
+
+// ============================================
+// Media Queries
+// ============================================
+
+@media screen and (min-width: 700px) {
+  h1 {
+    font-size: 50px;
+  }
+  .filter-title {
+    font-size: 40px;
+  }
+  .filter-container {
+    .filters {
+      &__size,
+      &__price {
+        font-size: 25px;
+      }
+
+      &__reset {
+        font-size: 30px;
+      }
+    }
+  }
+}

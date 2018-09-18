@@ -1,0 +1,122 @@
+Design an API to serve the information needed for the eCommerce site
+Must include plans for an admin to view/add/edit/delete products
+Must include plans for an admin to view/add/edit/delete new admin users
+Must include plans for an admin to view/delete information submitted through contact form
+
+Yes, when copy pasting the requirements I did try to comment them out. No, it did not work.
+
+Base URL
+
+   http://api.canopy.com/v1/
+
+PRODUCTS - View / Add / Edit / Delete
+
+    View All
+        http://api.canopy.com/v1/GET/products
+
+    View Specific
+        http://api.canopy.com/v1/POST/products/id
+
+    Add
+        http://api.canopy.com/v1/POST/products
+    
+    Edit All
+        http://api.canopy.com/v1/PUT/products/
+        
+    Edit Specific
+        http://api.canopy.com/v1/PUT/products/id
+
+    Delete All
+        http://api.canopy.com/v1/DELETE/products
+
+    Delete Specific
+        http://api.canopy.com/v1/POST/products/id
+
+
+ADMIN USERS - View / Add / Edit / Delete
+
+    View All
+        http://api.canopy.com/v1/GET/admins
+
+    View Specific
+        http://api.canopy.com/v1/GET/admins/id
+
+    Add
+        http://api.canopy.com/v1/POST/admins
+
+    Edit All
+        http://api.canopy.com/v1/PUT/admins
+
+    Edit Specific
+        http://api.canopy.com/v1/PUT/admins/id
+
+    Delete All
+        http://api.canopy.com/v1/Delete/admins
+
+    Delete Specific
+        http://api.canopy.com/v1/Delete/admins/id
+
+
+USERS - View / Add / Edit / Delete
+
+    View All
+        http://api.canopy.com/v1/GET/users
+
+    View Specific
+        http://api.canopy.com/v1/GET/users/id
+
+    Add
+        http://api.canopy.com/v1/POST/users
+
+    Edit All
+        http://api.canopy.com/v1/PUT/users
+
+    Edit Specific
+        http://api.canopy.com/v1/PUT/users/id
+
+    Delete All
+        http://api.canopy.com/v1/Delete/users
+
+    Delete Specific
+        http://api.canopy.com/v1/Delete/users/id
+        
+
+FORM DATA - View / Delete
+
+    View All
+        http://api.canopy.com/v1/GET/submitions
+
+    QUESTIONS
+
+        View All 
+            http://api.canopy.com/v1/GET/submitions/questions
+
+        View Specific 
+            http://api.canopy.com/v1/GET/submitions/questions/id
+
+        Delete All 
+            http://api.canopy.com/v1/DELETE/submitions/questions
+
+        Delete Specific
+            http://api.canopy.com/v1/Delete/submitions/questions/id
+
+    PURCHASES
+
+        View All 
+            http://api.canopy.com/v1/GET/submitions/purchases
+
+        View Specific 
+            http://api.canopy.com/v1/GET/submitions/purchases/id
+
+        Delete All 
+            http://api.canopy.com/v1/DELETE/submitions/purchases
+
+        Delete Specific
+            http://api.canopy.com/v1/Delete/submitions/purchases/id
+
+
+
+
+
+
+

@@ -1,0 +1,60 @@
+.hero {
+  background-image: url("/Assets/Images/canopy-hero.jpg");
+  background-size: cover;
+  text-align: center;
+  padding: 150px 0;
+
+  .text__background {
+    background-color: rgba(0, 0, 0, 0.6);
+    border-radius: 3px;
+    margin: 0 auto;
+    max-width: 500px;
+    padding: 10px;
+    width: 75%;
+  }
+
+  &__title {
+    color: white;
+    display: inline-block;
+    font-weight: bold;
+    font-size: 65px;
+  }
+
+  &__title::after {
+    border-top: solid white 1px;
+    display: block;
+    content: "border";
+    font-size: 0px;
+    margin: 20px auto 5px auto;
+    width: 50%;
+  }
+
+  &__desc {
+    color: white;
+    margin: 0 auto;
+  }
+}
+
+@media screen and (min-width: 700px) {
+  .hero {
+    &__title::after {
+      margin-top: 40px;
+    }
+  }
+}
+
+@media screen and (min-width: 1000px) {
+  .hero {
+    .text__background {
+      padding: 20px;
+    }
+
+    &__title {
+      font-size: 100px;
+    }
+
+    &__desc {
+      font-size: 25px;
+    }
+  }
+}

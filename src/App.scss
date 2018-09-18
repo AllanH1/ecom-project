@@ -1,0 +1,24 @@
+@import "./Ecom/Styles/Partials/_reset.scss";
+@import "./Ecom/Styles/Partials/_nav.scss";
+@import "./Ecom/Styles/Partials/Home/_hero.scss";
+@import "./Ecom/Styles/Partials/Home/_slideshow.scss";
+@import "./Ecom/Styles/Partials/Home/_mission.scss";
+@import "./Ecom/Styles/Partials/_footer.scss";
+@import "./Ecom/Styles/Partials/Contact/_form.scss";
+@import "./Ecom/Styles/Partials/Trees/_products.scss";
+
+body {
+  box-sizing: border-box;
+  font-family: "Work Sans", sans-serif;
+}
+
+#root {
+  background-color: rgba(231, 202, 187, 0.4);
+}
+
+// makes styling work for NavLinks
+
+a {
+  text-decoration: none;
+  color: inherit;
+}

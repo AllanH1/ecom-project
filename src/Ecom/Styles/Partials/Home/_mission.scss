@@ -1,0 +1,38 @@
+.mission {
+  text-align: left;
+  max-width: 600px;
+  padding: 130px 0;
+
+  &__title {
+    color: #52b788;
+    font-weight: bold;
+    font-size: 40px;
+    margin-bottom: 10px;
+  }
+
+  &__title::after {
+    border-top: solid #52b788 2px;
+    display: block;
+    content: "border";
+    font-size: 0px;
+    margin-top: 10px;
+  }
+
+  &__desc {
+    color: rgb(104, 104, 104);
+    line-height: 24px;
+  }
+}
+
+@media screen and (min-width: 1000px) {
+  .mission {
+    &__title {
+      font-size: 60px;
+    }
+
+    &__desc {
+      font-size: 25px;
+      line-height: 35px;
+    }
+  }
+}
