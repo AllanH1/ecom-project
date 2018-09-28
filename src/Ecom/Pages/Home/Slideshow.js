@@ -17,10 +17,7 @@ const fadeProperties = {
 const Slideshow = () => {
   return (
     <div className="featured">
-      <h2 className="featured__title">Featured Trees</h2>
-      <p className="featured__desc">
-        The world's most exotic and beautiful natural structures
-      </p>
+      <h2 className="featured__title">Featured</h2>
       <Fade {...fadeProperties}>
         <div className="each-fade">
           <div className="image-container">

@@ -10,8 +10,8 @@ const Footer = () => {
             to="/"
             className="footer__nav__item"
             activeStyle={{
-              color: "rgb(104, 68, 49)",
-              borderLeft: "solid 3px rgb(104, 68, 49)"
+              color: "rgb(201, 136, 101)",
+              borderLeft: "solid 3px rgb(201, 136, 101)"
             }}
             exact
           >
@@ -23,8 +23,8 @@ const Footer = () => {
             to="/trees"
             className="footer__nav__item"
             activeStyle={{
-              color: "rgb(104, 68, 49)",
-              borderLeft: "solid 3px rgb(104, 68, 49)"
+              color: "rgb(201, 136, 101)",
+              borderLeft: "solid 3px rgb(201, 136, 101)"
             }}
             exact
           >
@@ -36,8 +36,8 @@ const Footer = () => {
             to="/contact"
             className="footer__nav__item"
             activeStyle={{
-              color: "rgb(104, 68, 49)",
-              borderLeft: "solid 3px rgb(104, 68, 49)"
+              color: "rgb(201, 136, 101)",
+              borderLeft: "solid 3px rgb(201, 136, 101)"
             }}
             exact
           >

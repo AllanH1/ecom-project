@@ -21,6 +21,9 @@ const Contact = () => {
             <option value="cherry">Cherry Blossom</option>
             <option value="angel">Angel Oak</option>
             <option value="baobab">Grandidier's Baobab</option>
+            <option value="willow">Willow</option>
+            <option value="maple">Red Maple</option>
+            <option value="bonsai">Bonsai</option>
           </select>
           <label className="label--text" htmlFor="firstName">
             First Name

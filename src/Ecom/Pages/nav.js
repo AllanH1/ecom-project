@@ -1,5 +1,6 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
+import auth0Client from "../Security/Auth";
 
 const Nav = () => {
   return (
@@ -16,8 +17,8 @@ const Nav = () => {
             to="/"
             className="nav__list__item"
             activeStyle={{
-              color: "rgb(104, 68, 49)",
-              borderBottom: "solid 3px rgb(104, 68, 49)"
+              color: "rgb(201, 136, 101)",
+              borderBottom: "solid 3px rgb(201, 136, 101)"
             }}
             exact
           >
@@ -29,8 +30,8 @@ const Nav = () => {
             to="/trees"
             className="nav__list__item"
             activeStyle={{
-              color: "rgb(104, 68, 49)",
-              borderBottom: "solid 3px rgb(104, 68, 49)"
+              color: "rgb(201, 136, 101)",
+              borderBottom: "solid 3px rgb(201, 136, 101)"
             }}
             exact
           >
@@ -42,13 +43,30 @@ const Nav = () => {
             to="/contact"
             className="nav__list__item"
             activeStyle={{
-              color: "rgb(104, 68, 49)",
-              borderBottom: "solid 3px rgb(104, 68, 49)"
+              color: "rgb(201, 136, 101)",
+              borderBottom: "solid 3px rgb(201, 136, 101)"
             }}
             exact
           >
             Contact
           </NavLink>
+        </li>
+        {auth0Client.isAuthenticated() ? (
+          <li>
+            <NavLink to="/admin">Admin</NavLink>
+          </li>
+        ) : null}
+        <li>
+          {!auth0Client.isAuthenticated() && (
+            <button className="header__auth" onClick={auth0Client.signIn}>
+              Log In
+            </button>
+          )}
+          {auth0Client.isAuthenticated() && (
+            <button className="header__auth" onClick={auth0Client.signOut}>
+              Log Out
+            </button>
+          )}
         </li>
       </ul>
     </header>

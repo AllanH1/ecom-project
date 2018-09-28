@@ -7,8 +7,11 @@
 @import "./Ecom/Styles/Partials/Contact/_form.scss";
 @import "./Ecom/Styles/Partials/Trees/_products.scss";
 
-body {
+* {
   box-sizing: border-box;
+}
+
+body {
   font-family: "Work Sans", sans-serif;
 }
 
