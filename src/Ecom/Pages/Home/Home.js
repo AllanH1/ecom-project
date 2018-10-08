@@ -60,8 +60,8 @@ const Home = () => {
           <article>
             <h2 className="mission__title">Exotic Foliage</h2>
             <p className="mission__desc">
-              Choose from the world's rarest and beautiful trees to give your
-              home a more exotic or natural look.
+              Choose from the world's rarest and most beautiful trees to give
+              your home a more exotic or natural look.
             </p>
           </article>
         </section>

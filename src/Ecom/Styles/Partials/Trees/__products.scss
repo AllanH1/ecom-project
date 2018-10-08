@@ -82,7 +82,7 @@ h1::after {
     width: 270px;
 
     img {
-      box-shadow: 1px 1px 10px;
+      box-shadow: 7px 7px 20px 0 rgba(0, 0, 0, 0.2);
       height: 350px;
       margin-bottom: 10px;
       text-align: center;
@@ -121,6 +121,7 @@ h1::after {
   }
   .filter-title {
     font-size: 40px;
+    margin-top: 50px;
   }
   .filter-container {
     .filters {

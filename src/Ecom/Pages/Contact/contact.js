@@ -17,7 +17,7 @@ const Contact = () => {
             Please choose a topic
           </label>
           <select id="trees" name="trees">
-            <option value="business">The business in general</option>
+            <option value="business">General Business</option>
             <option value="cherry">Cherry Blossom</option>
             <option value="angel">Angel Oak</option>
             <option value="baobab">Grandidier's Baobab</option>

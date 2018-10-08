@@ -22,7 +22,7 @@ const Nav = () => {
             }}
             exact
           >
-            Home
+            <i className="fas fa-home" />
           </NavLink>
         </li>
         <li>
@@ -35,7 +35,7 @@ const Nav = () => {
             }}
             exact
           >
-            Trees
+            <i className="fas fa-shopping-cart" />
           </NavLink>
         </li>
         <li>
@@ -48,23 +48,33 @@ const Nav = () => {
             }}
             exact
           >
-            Contact
+            <i className="fas fa-comment" />
           </NavLink>
         </li>
         {auth0Client.isAuthenticated() ? (
           <li>
-            <NavLink to="/admin">Admin</NavLink>
+            <NavLink
+              to="/admin"
+              className="nav__list__item"
+              activeStyle={{
+                color: "rgb(201, 136, 101)",
+                borderBottom: "solid 3px rgb(201, 136, 101)"
+              }}
+              exact
+            >
+              <i className="fas fa-user-tie" />
+            </NavLink>
           </li>
         ) : null}
         <li>
           {!auth0Client.isAuthenticated() && (
             <button className="header__auth" onClick={auth0Client.signIn}>
-              Log In
+              <i className="fas fa-sign-in-alt" />
             </button>
           )}
           {auth0Client.isAuthenticated() && (
             <button className="header__auth" onClick={auth0Client.signOut}>
-              Log Out
+              <i className="fas fa-sign-out-alt" />
             </button>
           )}
         </li>

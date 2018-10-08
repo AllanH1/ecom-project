@@ -66,6 +66,70 @@ class App extends Component {
     });
   }
 
+  submitNewProductHandler(formData) {
+    return fetch(`http://localhost:3001/products`, {
+      method: "POST",
+      body: JSON.stringify(formData),
+      headers: { "Content-Type": "application/json" }
+    })
+      .then(res => res.json())
+      .then(data => {
+        this.setState(prevState => {
+          if (prevState.products !== data) {
+            return {
+              products: data,
+              filteredTrees: data
+            };
+          }
+        });
+      })
+      .catch(error => {
+        console.log(error);
+      });
+  }
+
+  submitEditHandler(formData, id) {
+    return fetch(`http://localhost:3001/products/${id}`, {
+      method: "PUT",
+      body: JSON.stringify(formData),
+      headers: { "Content-Type": "application/json" }
+    })
+      .then(res => res.json())
+      .then(data => {
+        this.setState(prevState => {
+          if (prevState.products !== data) {
+            return {
+              products: data,
+              filteredTrees: data
+            };
+          }
+        });
+      })
+      .catch(error => {
+        console.log(error);
+      });
+  }
+
+  submitDeleteHandler(id) {
+    return fetch(`http://localhost:3001/products/${id}`, {
+      method: "DELETE"
+    })
+      .then(res => res.json())
+      .then(data => {
+        this.setState(prevState => {
+          if (prevState.products !== data) {
+            return {
+              products: data,
+              filteredTrees: data
+            };
+          }
+        });
+      })
+      .catch(error => {
+        console.log(error);
+      });
+  }
+
   render() {
     return (
       <BrowserRouter>
@@ -89,7 +153,20 @@ class App extends Component {
               exact
             />
             <Route path="/callback" component={AuthCallback} exact />
-            <SecuredRoute path="/admin" component={Admin} exact />
+            <SecuredRoute
+              path="/admin"
+              component={Admin}
+              exact
+              products={this.state.products}
+              requestSuccess={this.state.requestSuccess}
+              submitDeleteHandler={id => this.submitDeleteHandler(id)}
+              submitEditHandler={(formData, id) =>
+                this.submitEditHandler(formData, id)
+              }
+              submitNewProductHandler={formData =>
+                this.submitNewProductHandler(formData)
+              }
+            />
 
             {/* <Route component={Error} /> */}
           </Switch>

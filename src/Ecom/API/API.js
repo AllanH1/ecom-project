@@ -31,47 +31,11 @@ const Product = mongoose.model(`Product`, {
 app.use(cors());
 app.use(bodyParser.json());
 
-// ==== add new product ====
-
-app.post(`/products`, (req, res) => {
-  const { name, size, price, pic, desc, _id } = req.body;
-  const tree = new Product({
-    name,
-    size,
-    price,
-    pic,
-    desc,
-    _id
-  });
-
-  Product.findById(_id).then(product => {
-    // if it does not find an id, then product does not exist and can be added.
-    if (!product) {
-      tree
-        .save()
-        .then(
-          product => {
-            res.send(product);
-          },
-          error => {
-            res.status(400).send(error.message);
-          }
-        )
-        .catch(error => res.status(400).send(error.message));
-    } else {
-      // if it does find an ID, it already exists and we don't add it.
-      res.status(400).send(`product ID already exists`);
-    }
-  });
-});
-
 // ==== view all products ====
 
 app.get(`/products`, (req, res) => {
   Product.find()
-    .then(products => {
-      res.send({ products });
-    })
+    .then(products => res.send({ products }))
     .catch(error => res.status(400).send(error.message));
 });
 
@@ -86,13 +50,47 @@ app.get(`/products/:id/`, (req, res) => {
     .catch(error => res.status(400).send(error.message));
 });
 
+// ==== add new product ====
+
+app.post(`/products`, (req, res) => {
+  const { pic, name, size, price, desc, _id } = req.body;
+  const tree = new Product({
+    pic,
+    name,
+    size,
+    price,
+    desc,
+    _id
+  });
+
+  Product.findById(_id).then(product => {
+    // if it does not find an id, then product does not exist and can be added.
+    if (!product) {
+      tree
+        .save()
+        .then(() => Product.find().then(products => res.send(products)))
+        .catch(error => res.status(400).send(error.message));
+    } else {
+      // if it does find an ID, it already exists and we don't add it.
+      res.status(400).send(`product ID already exists`);
+    }
+  });
+});
+
 // ==== update specific product by id ====
 
-app.patch(`/products/:id`, (req, res) => {
+app.put(`/products/:id`, (req, res) => {
   let id = parseInt(req.params.id);
-  let body = lodash.pick(req.body, [`pic`, `name`, `size`, `price`, `desc`]);
-  Product.findByIdAndUpdate(id, { $set: body }, { new: true })
-    .then(product => res.send({ product }))
+  let body = lodash.pick(req.body, [
+    `pic`,
+    `name`,
+    `size`,
+    `price`,
+    `desc`,
+    `_id`
+  ]);
+  Product.findByIdAndUpdate(id, { $set: body })
+    .then(() => Product.find().then(products => res.send(products)))
     .catch(error => res.status(400).send(error.message));
 });
 
@@ -102,12 +100,11 @@ app.delete(`/products/:id`, (req, res) => {
   let id = parseInt(req.params.id);
   Product.findByIdAndDelete(id)
     .then(product => {
-      if (product) {
-        res.send({ product });
-      } else {
+      if (!product) {
         res.status(404).send(`Unable to find id`);
       }
     })
+    .then(() => Product.find().then(products => res.send(products)))
     .catch(error => res.status(400).send(error.message));
 });
 

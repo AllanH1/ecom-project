@@ -12,7 +12,18 @@ function SecuredRoute(props) {
           auth0Client.signIn();
           return <div />;
         }
-        return <Component />;
+        return (
+          <Component
+            products={props.products}
+            submitDeleteHandler={id => props.submitDeleteHandler(id)}
+            submitEditHandler={(formData, id) =>
+              props.submitEditHandler(formData, id)
+            }
+            submitNewProductHandler={formData =>
+              props.submitNewProductHandler(formData)
+            }
+          />
+        );
       }}
     />
   );

@@ -130,16 +130,26 @@ table {
   align-items: center;
   background-color: #c3f9c9;
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
+  padding: 0 10px;
   position: fixed;
   text-align: center;
   top: 0;
   transition: 0.3s;
   width: 100%;
   z-index: 10; }
+  .nav .header__auth {
+    background-color: inherit;
+    border: 0;
+    padding: 0;
+    color: inherit;
+    font-size: 17px;
+    margin-left: 15px;
+    transition: 0.2s;
+    font-weight: bold;
+    text-transform: uppercase; }
   .nav__list {
     align-items: center;
-    color: #3f6d45;
     display: flex;
     font-size: 17px;
     font-weight: bold;
@@ -147,11 +157,13 @@ table {
     padding: 20px;
     text-transform: uppercase; }
     .nav__list__item {
+      padding: 5px;
       margin-left: 15px;
       transition: 0.2s; }
   .nav .fas {
     color: #3f6d45;
-    font-size: 25px; }
+    font-size: 25px;
+    transition: 0.2s; }
   .nav .logo-text {
     color: #3f6d45;
     font-size: 0;
@@ -160,20 +172,33 @@ table {
 @media screen and (min-width: 700px) {
   .nav {
     justify-content: space-between; }
-    .nav__list {
+    .nav .fas {
+      font-size: 40px;
+      margin: 0 10px; }
+    .nav__list,
+    .nav .header__auth {
       font-size: 25px; }
-      .nav__list__item {
+      .nav__list .fa-sign-in-alt,
+      .nav__list .fa-sign-out-alt,
+      .nav .header__auth .fa-sign-in-alt,
+      .nav .header__auth .fa-sign-out-alt {
+        margin-left: 20px; }
+      .nav__list .fa-sign-in-alt:hover,
+      .nav__list .fa-sign-out-alt:hover,
+      .nav .header__auth .fa-sign-in-alt:hover,
+      .nav .header__auth .fa-sign-out-alt:hover {
+        color: #c98865; }
+      .nav__list__item,
+      .nav .header__auth__item {
         margin-left: 25px;
         padding-bottom: 5px; }
-      .nav__list__item:hover {
+      .nav__list__item:hover,
+      .nav .header__auth__item:hover {
         border-bottom: solid 3px #c98865;
         color: #c98865; }
     .nav .logo-container {
       align-items: center;
       display: flex; }
-      .nav .logo-container .fas {
-        font-size: 35px;
-        margin-left: 20px; }
       .nav .logo-container .logo-text {
         font-size: 25px;
         font-weight: bold;
@@ -262,7 +287,7 @@ table {
     font-weight: bold;
     margin-top: 10px; }
   .featured img {
-    box-shadow: 1px 1px 10px;
+    box-shadow: 7px 7px 20px 0 rgba(0, 0, 0, 0.5);
     height: 350px;
     width: 250px; }
 
@@ -379,7 +404,8 @@ table {
     font-size: 13px;
     height: 30px;
     margin: 0 auto;
-    text-align-last: center; }
+    text-align-last: center;
+    width: 250px; }
   .form .label--select {
     text-align: center; }
   .form label,
@@ -387,16 +413,21 @@ table {
     display: block;
     height: 30px; }
   .form input {
-    box-shadow: 1px 1px 10px;
+    border: solid 1px rgba(86, 78, 88, 0.4);
+    box-shadow: 5px 5px 5px 0 rgba(0, 0, 0, 0.2);
+    padding: 5px;
     width: 97%; }
   .form label {
     font-size: 18px;
-    margin-top: 35px; }
+    margin: 40px 0 0px 0; }
   .form .label--area {
     text-align: center; }
   .form textarea {
+    border: solid 1px rgba(86, 78, 88, 0.4);
+    box-shadow: 5px 5px 5px 0 rgba(0, 0, 0, 0.2);
     display: block;
     margin: 0 auto;
+    padding: 5px;
     width: 97%; }
   .form input[type="submit"] {
     background-color: white;
@@ -408,14 +439,19 @@ table {
 
 @media screen and (min-width: 1000px) {
   .form__title {
-    font-size: 50px; }
+    font-size: 50px;
+    margin-top: 50px; }
   .form select {
     font-size: 20px; }
   .form label {
     font-size: 30px;
-    margin-bottom: 15px; }
+    margin: 60px 0 15px 0; }
   .form input[type="submit"] {
-    font-size: 17px; } }
+    font-size: 17px; }
+  .form textarea {
+    font-size: 20px; }
+  .form textarea::placeholder {
+    font-size: 20px; } }
 
 h1 {
   color: #686868;
@@ -479,7 +515,7 @@ h1::after {
     margin: 0 auto 70px auto;
     width: 270px; }
     .products .product img {
-      box-shadow: 1px 1px 10px;
+      box-shadow: 7px 7px 20px 0 rgba(0, 0, 0, 0.2);
       height: 350px;
       margin-bottom: 10px;
       text-align: center;
@@ -502,11 +538,113 @@ h1::after {
   h1 {
     font-size: 50px; }
   .filter-title {
-    font-size: 40px; }
+    font-size: 40px;
+    margin-top: 50px; }
   .filter-container .filters__size, .filter-container .filters__price {
     font-size: 25px; }
   .filter-container .filters__reset {
     font-size: 30px; } }
+
+.admin {
+  color: #686868;
+  padding: 100px 0 50px 0; }
+  .admin__controls {
+    display: flex;
+    justify-content: center;
+    margin: 0 auto;
+    max-width: 600px; }
+    .admin__controls .products__edit {
+      margin: 30px 20px 0 auto;
+      text-align: center; }
+      .admin__controls .products__edit .checkmark--red {
+        font-size: 0;
+        display: block;
+        color: red;
+        margin-top: 10px;
+        transition: 0.3s cubic-bezier(0.48, 0.45, 0.62, 1.46); }
+      .admin__controls .products__edit img {
+        box-shadow: 3px 3px 5px 0 rgba(0, 0, 0, 0.2);
+        height: 210px;
+        width: 200px; }
+      .admin__controls .products__edit__form {
+        margin: 0 auto;
+        text-align: center;
+        max-width: 200px; }
+        .admin__controls .products__edit__form label {
+          display: block;
+          margin-bottom: 5px;
+          margin-top: 15px;
+          text-align: left; }
+        .admin__controls .products__edit__form .input__text,
+        .admin__controls .products__edit__form .input__area {
+          border: solid 1px rgba(86, 78, 88, 0.4);
+          box-shadow: 3px 3px 5px 0 rgba(0, 0, 0, 0.2);
+          padding: 5px;
+          width: 200px; }
+        .admin__controls .products__edit__form input[type="submit"] {
+          background-color: #5ac1e6;
+          border-radius: 2px;
+          box-shadow: 2px 2px 3px 0 rgba(0, 0, 0, 0.2);
+          border: solid 1px rgba(0, 0, 0, 0.1);
+          color: #002555;
+          margin-top: 15px;
+          padding: 10px 30px;
+          text-transform: uppercase; }
+        .admin__controls .products__edit__form .checkmark--green {
+          font-size: 0;
+          display: block;
+          color: #34b87f;
+          margin-top: 10px;
+          transition: 0.3s cubic-bezier(0.48, 0.45, 0.62, 1.46); }
+      .admin__controls .products__edit .button--delete {
+        background-color: #f46f58;
+        border-radius: 2px;
+        box-shadow: 2px 2px 3px 0 rgba(0, 0, 0, 0.2);
+        border: solid 1px rgba(0, 0, 0, 0.1);
+        color: #540404;
+        margin-top: 10px;
+        padding: 10px 30px;
+        text-transform: uppercase; }
+      .admin__controls .products__edit .button--add {
+        background-color: #c3f9c9;
+        border-radius: 2px;
+        border: solid 1px rgba(0, 0, 0, 0.1);
+        box-shadow: 2px 2px 3px 0 rgba(0, 0, 0, 0.2);
+        color: #3f6d45;
+        text-transform: uppercase;
+        margin-bottom: 20px;
+        padding: 10px 30px; }
+    .admin__controls .products__nav {
+      display: flex;
+      flex-direction: column;
+      font-size: 14px;
+      justify-content: space-evenly;
+      text-align: center;
+      width: 320px; }
+      .admin__controls .products__nav .product {
+        margin-top: 10px;
+        width: 90px; }
+        .admin__controls .products__nav .product img {
+          box-shadow: 5px 5px 5px 0 rgba(0, 0, 0, 0.2);
+          height: 50px;
+          width: 40px; }
+
+@media screen and (min-width: 700px) {
+  .admin {
+    padding-top: 150px; }
+    .admin__controls .products__edit img {
+      height: 300px;
+      width: 270px; }
+    .admin__controls .products__nav {
+      flex-direction: row;
+      flex-wrap: wrap;
+      width: 350px;
+      justify-content: space-evenly; }
+      .admin__controls .products__nav .product {
+        margin: 20px; }
+        .admin__controls .products__nav .product img {
+          height: 110px;
+          width: 95px; } }
 
 * {
   box-sizing: border-box; }
