@@ -1,6 +1,20 @@
 import React from "react";
 
-const Contact = () => {
+const Contact = props => {
+  // runs when you hit "SUBMIT"
+  const getFormData = e => {
+    e.preventDefault();
+    let contactForm = document.querySelector(".form");
+    let question = {
+      topic: contactForm.elements[0].value,
+      firstName: contactForm.elements[1].value,
+      lastName: contactForm.elements[2].value,
+      email: contactForm.elements[3].value,
+      question: contactForm.elements[4].value
+    };
+    return props.postQuestion(question);
+  };
+
   return (
     <div>
       <main
@@ -11,19 +25,26 @@ const Contact = () => {
           padding: "0 30px"
         }}
       >
-        <form className="form">
+        <form
+          className="form"
+          onSubmit={e =>
+            getFormData(e)
+              .then(() => console.log("it works"))
+              .catch(() => console.log("it doesn't work"))
+          }
+        >
           <legend className="form__title">Have Questions?</legend>
           <label className="label--select" htmlFor="trees">
             Please choose a topic
           </label>
           <select id="trees" name="trees">
-            <option value="business">General Business</option>
-            <option value="cherry">Cherry Blossom</option>
-            <option value="angel">Angel Oak</option>
-            <option value="baobab">Grandidier's Baobab</option>
-            <option value="willow">Willow</option>
-            <option value="maple">Red Maple</option>
-            <option value="bonsai">Bonsai</option>
+            <option value="Business">General Business</option>
+            <option value="Cherry Blossom">Cherry Blossom</option>
+            <option value="Angel Oak">Angel Oak</option>
+            <option value="Grandidier's Boabab">Grandidier's Baobab</option>
+            <option value="Willow">Willow</option>
+            <option value="Red Maple">Red Maple</option>
+            <option value="Bonsai">Bonsai</option>
           </select>
           <label className="label--text" htmlFor="firstName">
             First Name

@@ -2,107 +2,154 @@
   color: rgb(104, 104, 104);
   padding: 100px 0 50px 0;
 
-  &__controls {
+  &__switch-container {
+    width: 250px;
     display: flex;
-    justify-content: center;
-    margin: 0 auto;
-    max-width: 600px;
+    justify-content: space-evenly;
+    margin: 20px auto;
+    &__switch {
+      text-transform: uppercase;
+      border: solid 1px rgba(86, 78, 88, 0.4);
+      color: #3f6d45;
+      background-color: #c3f9c9;
+      font-size: 15px;
+      padding: 10px;
+    }
+  }
 
-    .products__edit {
-      margin: 30px 20px 0 auto;
-      text-align: center;
+  &__data {
+    // ======================
+    // styles for form data
+    // ======================
+    .questions {
+      .formData {
+        background-color: rgb(252, 252, 252);
+        border-radius: 3px;
+        border: solid 1px rgba(86, 78, 88, 0.4);
+        margin: 10px auto 0 auto;
+        max-width: 450px;
+        padding: 10px;
 
-      .checkmark--red {
-        font-size: 0;
-        display: block;
-        color: red;
-        margin-top: 10px;
-        transition: 0.3s cubic-bezier(0.48, 0.45, 0.62, 1.46);
-      }
-
-      img {
-        box-shadow: 3px 3px 5px 0 rgba(0, 0, 0, 0.2);
-        height: 210px;
-        width: 200px;
-      }
-      &__form {
-        margin: 0 auto;
-        text-align: center;
-        max-width: 200px;
-
-        label {
-          display: block;
-          margin-bottom: 5px;
-          margin-top: 15px;
-          text-align: left;
+        h2 {
+          border-bottom: solid 1px #3f6d45;
+          padding-bottom: 10px;
+          text-align: center;
         }
 
-        .input__text,
-        .input__area {
-          border: solid 1px rgba(86, 78, 88, 0.4);
+        &__heading {
+          color: #3f6d45;
+          display: block;
+          margin-bottom: 3px;
+          margin-top: 10px;
+        }
+      }
+    }
+
+    // ======================
+    // styles for products
+    // ======================
+    .admin__controls {
+      display: flex;
+      justify-content: center;
+      margin: 0 auto;
+      max-width: 600px;
+
+      .products__edit {
+        margin: 30px 20px 0 auto;
+        text-align: center;
+
+        .checkmark--red {
+          color: red;
+          display: block;
+          font-size: 0;
+          margin-top: 10px;
+          transition: 0.3s cubic-bezier(0.48, 0.45, 0.62, 1.46);
+        }
+
+        img {
           box-shadow: 3px 3px 5px 0 rgba(0, 0, 0, 0.2);
-          padding: 5px;
+          height: 210px;
           width: 200px;
         }
+        &__form {
+          margin: 0 auto;
+          text-align: center;
+          max-width: 200px;
 
-        input[type="submit"] {
-          background-color: rgb(90, 193, 230);
+          label {
+            display: block;
+            margin-bottom: 5px;
+            margin-top: 15px;
+            text-align: left;
+          }
+
+          .input__text,
+          .input__area {
+            border: solid 1px rgba(86, 78, 88, 0.4);
+            box-shadow: 3px 3px 5px 0 rgba(0, 0, 0, 0.2);
+            padding: 5px;
+            width: 200px;
+          }
+
+          input[type="submit"] {
+            background-color: rgb(90, 193, 230);
+            border-radius: 2px;
+            box-shadow: 2px 2px 3px 0 rgba(0, 0, 0, 0.2);
+            border: solid 1px rgba(0, 0, 0, 0.1);
+            color: rgb(0, 37, 85);
+            margin-top: 15px;
+            padding: 10px 30px;
+            text-transform: uppercase;
+          }
+
+          .checkmark--green {
+            font-size: 0;
+            display: block;
+            color: #34b87f;
+            margin-top: 10px;
+            transition: 0.3s cubic-bezier(0.48, 0.45, 0.62, 1.46);
+          }
+        }
+
+        .button--delete {
+          background-color: rgb(244, 111, 88);
           border-radius: 2px;
           box-shadow: 2px 2px 3px 0 rgba(0, 0, 0, 0.2);
           border: solid 1px rgba(0, 0, 0, 0.1);
-          color: rgb(0, 37, 85);
-          margin-top: 15px;
+          color: #540404;
+          margin-top: 10px;
           padding: 10px 30px;
           text-transform: uppercase;
         }
 
-        .checkmark--green {
-          font-size: 0;
-          display: block;
-          color: #34b87f;
-          margin-top: 10px;
-          transition: 0.3s cubic-bezier(0.48, 0.45, 0.62, 1.46);
+        .button--add {
+          background-color: #c3f9c9;
+          border-radius: 2px;
+          border: solid 1px rgba(0, 0, 0, 0.1);
+          box-shadow: 2px 2px 3px 0 rgba(0, 0, 0, 0.2);
+          color: #3f6d45;
+          text-transform: uppercase;
+          margin-bottom: 20px;
+          padding: 10px 30px;
         }
       }
 
-      .button--delete {
-        background-color: rgb(244, 111, 88);
-        border-radius: 2px;
-        box-shadow: 2px 2px 3px 0 rgba(0, 0, 0, 0.2);
-        border: solid 1px rgba(0, 0, 0, 0.1);
-        color: #540404;
-        margin-top: 10px;
-        padding: 10px 30px;
-        text-transform: uppercase;
-      }
+      .products__nav {
+        display: flex;
+        flex-direction: column;
+        font-size: 14px;
+        justify-content: space-evenly;
+        text-align: center;
+        width: 320px;
+        .product {
+          margin-top: 10px;
+          width: 90px;
 
-      .button--add {
-        background-color: #c3f9c9;
-        border-radius: 2px;
-        border: solid 1px rgba(0, 0, 0, 0.1);
-        box-shadow: 2px 2px 3px 0 rgba(0, 0, 0, 0.2);
-        color: #3f6d45;
-        text-transform: uppercase;
-        margin-bottom: 20px;
-        padding: 10px 30px;
-      }
-    }
-
-    .products__nav {
-      display: flex;
-      flex-direction: column;
-      font-size: 14px;
-      justify-content: space-evenly;
-      text-align: center;
-      width: 320px;
-      .product {
-        margin-top: 10px;
-        width: 90px;
-
-        img {
-          box-shadow: 5px 5px 5px 0 rgba(0, 0, 0, 0.2);
-          height: 50px;
-          width: 40px;
+          img {
+            box-shadow: 5px 5px 5px 0 rgba(0, 0, 0, 0.2);
+            height: 50px;
+            width: 40px;
+          }
         }
       }
     }
@@ -113,7 +160,18 @@
   .admin {
     padding-top: 150px;
 
-    &__controls {
+    &__data {
+      .questions {
+        display: flex;
+        flex-wrap: wrap;
+
+        .formData {
+          width: 450px;
+        }
+      }
+    }
+
+    .admin__controls {
       .products__edit {
         img {
           height: 300px;

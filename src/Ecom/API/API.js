@@ -24,12 +24,54 @@ const Product = mongoose.model(`Product`, {
   _id: { type: Number, required: true, minlength: 1 }
 });
 
+const Question = mongoose.model(`Question`, {
+  topic: { type: String, required: true, trim: true },
+  firstName: { type: String, required: true, minlength: 1 },
+  lastName: { type: String, required: true, minlength: 1, trim: true },
+  email: { type: String, required: true, minlength: 1, trim: true },
+  question: { type: String, required: true, minlength: 1, trim: true }
+});
+
 // ==========================================
 // CRUD
 // ==========================================
 
 app.use(cors());
 app.use(bodyParser.json());
+
+// ===============
+// Questions
+// ===============
+
+// ==== view all questions ====
+
+app.get(`/questions`, (req, res) => {
+  Question.find()
+    .then(question => res.send({ question }))
+    .catch(error => res.status(400).send(error.message));
+});
+
+// ==== add new quesiton ====
+
+app.post(`/questions`, (req, res) => {
+  const { topic, firstName, lastName, email, question, _id } = req.body;
+  const message = new Question({
+    topic,
+    firstName,
+    lastName,
+    email,
+    question,
+    _id
+  });
+  message
+    .save()
+    .then(() => Question.find().then(questions => res.send(questions)))
+    .catch(error => res.status(400).send(error.message));
+});
+
+// ===============
+// Products
+// ===============
 
 // ==== view all products ====
 

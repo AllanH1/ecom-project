@@ -12,7 +12,8 @@ class Admin extends Component {
       pic: "",
       size: "",
       price: "",
-      desc: ""
+      desc: "",
+      viewing: "products"
     };
   }
 
@@ -124,9 +125,18 @@ class Admin extends Component {
     }
   }
 
-  render() {
-    const trees = [];
+  chooseDataHandler(option) {
+    this.setState({
+      viewing: option
+    });
+  }
 
+  render() {
+    // trees contains products, questions contains submitted form data
+    const trees = [];
+    const questions = [];
+
+    // if() stops error on first render
     if (this.props.products.length > 0) {
       this.props.products.forEach(object => {
         trees.push(
@@ -142,6 +152,33 @@ class Admin extends Component {
       });
     }
 
+    if (this.props.questions.length > 0) {
+      this.props.questions.forEach(object => {
+        questions.push(
+          <article className="formData" key={object._id}>
+            <h2>
+              <span className="formData__heading">Topic:</span> {object.topic}
+            </h2>
+            <p>
+              <span className="formData__heading">First Name:</span>{" "}
+              {object.firstName}
+            </p>
+            <p>
+              <span className="formData__heading">Last Name:</span>{" "}
+              {object.lastName}
+            </p>
+            <p>
+              <span className="formData__heading">Email:</span> {object.email}
+            </p>
+            <p className="formData__body">
+              <span className="formData__heading">Body: </span>
+              {object.question}
+            </p>
+          </article>
+        );
+      });
+    }
+
     return (
       <div
         className="admin"
@@ -150,132 +187,152 @@ class Admin extends Component {
           margin: "0 auto"
         }}
       >
-        <h1 className="admin__title">Products</h1>
-        <main className="admin__controls">
-          <section className="products__nav">{trees}</section>
-          <section className="products__edit">
-            <button
-              className="button--add"
-              onClick={() => this.newProductHandler()}
-            >
-              New
-            </button>
-            {this.state.form ? (
-              <div>
-                {this.state.productToEdit.length > 0 ? (
-                  <img
-                    src={this.state.productToEdit[0].pic}
-                    alt={this.state.productToEdit[0].name}
-                  />
-                ) : null}
-                <form
-                  className="products__edit__form"
-                  onSubmit={e =>
-                    this.sendFormDataHandler(e)
-                      .then(() => this.feedbackHandler("edit"))
-                      .catch(() => console.log("error"))
-                  }
-                >
-                  <label className="label__text" htmlFor="productName">
-                    Name
-                  </label>
-                  <input
-                    name="name"
-                    className="input__text"
-                    type="text"
-                    id="productName"
-                    onChange={e => this.formInputHandler(e)}
-                    value={this.state.name}
-                  />
-                  <label className="label__text" htmlFor="productID">
-                    ID
-                  </label>
-                  <input
-                    name="_id"
-                    className="input__text"
-                    type="text"
-                    id="productID"
-                    onChange={e => this.formInputHandler(e)}
-                    value={this.state._id}
-                  />
-                  <label className="label__text" htmlFor="productPic">
-                    Picture (URL)
-                  </label>
-                  <input
-                    name="pic"
-                    className="input__text"
-                    type="text"
-                    id="productPic"
-                    onChange={e => this.formInputHandler(e)}
-                    value={this.state.pic}
-                  />
-                  <label className="label__text" htmlFor="productSize">
-                    Size
-                  </label>
-                  <input
-                    name="size"
-                    className="input__text"
-                    type="text"
-                    id="productSize"
-                    onChange={e => this.formInputHandler(e)}
-                    value={this.state.size}
-                  />
-                  <label className="label__text" htmlFor="productPrice">
-                    Price
-                  </label>
-                  <input
-                    name="price"
-                    className="input__text"
-                    type="text"
-                    id="productPrice"
-                    onChange={e => this.formInputHandler(e)}
-                    value={this.state.price}
-                  />
-                  <label className="label__area" htmlFor="productDesc">
-                    Description
-                  </label>
-                  <textarea
-                    name="desc"
-                    className="input__area"
-                    id="productDesc"
-                    rows="10"
-                    col="30"
-                    onChange={e => this.formInputHandler(e)}
-                    value={this.state.desc}
-                  />
-                  <input
-                    className="form__submit"
-                    type="submit"
-                    id="submit"
-                    value="Submit"
-                  />
-                  <i
-                    className="fas fa-check-circle checkmark--green"
-                    style={{ transform: "scale(0) rotate(-70deg)" }}
-                  />
-                </form>
+        <h1 className="admin__title">Admin</h1>
+        <div className="admin__switch-container">
+          <button
+            onClick={() => this.chooseDataHandler("products")}
+            className="admin__switch-container__switch"
+          >
+            Products
+          </button>
+          <button
+            onClick={() => this.chooseDataHandler("formData")}
+            className="admin__switch-container__switch"
+          >
+            Questions
+          </button>
+        </div>
+        <main className="admin__data">
+          {this.state.viewing === "products" ? (
+            <div className="admin__controls">
+              <section className="products__nav">{trees}</section>
+              <section className="products__edit">
                 <button
-                  onClick={() => {
-                    // this.feedbackHandler("delete");
-                    this.deleteProductHandler()
-                      .then(() => this.feedbackHandler("delete"))
-                      .catch(() => console.log("error"));
-                  }}
-                  className="button--delete"
+                  className="button--add"
+                  onClick={() => this.newProductHandler()}
                 >
-                  Delete
+                  New
                 </button>
-              </div>
-            ) : (
-              <div>
-                <p>Or choose a product to edit</p>
-                <i
-                  className="fas fa-check-circle checkmark--red"
-                  style={{ transform: "scale(0) rotate(-70deg)" }}
-                />
-              </div>
-            )}
-          </section>
+                {this.state.form ? (
+                  <div>
+                    {this.state.productToEdit.length > 0 ? (
+                      <img
+                        src={this.state.productToEdit[0].pic}
+                        alt={this.state.productToEdit[0].name}
+                      />
+                    ) : null}
+                    <form
+                      className="products__edit__form"
+                      onSubmit={e =>
+                        this.sendFormDataHandler(e)
+                          .then(() => this.feedbackHandler("edit"))
+                          .catch(() => console.log("error"))
+                      }
+                    >
+                      <label className="label__text" htmlFor="productName">
+                        Name
+                      </label>
+                      <input
+                        name="name"
+                        className="input__text"
+                        type="text"
+                        id="productName"
+                        onChange={e => this.formInputHandler(e)}
+                        value={this.state.name}
+                      />
+                      <label className="label__text" htmlFor="productID">
+                        ID
+                      </label>
+                      <input
+                        name="_id"
+                        className="input__text"
+                        type="text"
+                        id="productID"
+                        onChange={e => this.formInputHandler(e)}
+                        value={this.state._id}
+                      />
+                      <label className="label__text" htmlFor="productPic">
+                        Picture (URL)
+                      </label>
+                      <input
+                        name="pic"
+                        className="input__text"
+                        type="text"
+                        id="productPic"
+                        onChange={e => this.formInputHandler(e)}
+                        value={this.state.pic}
+                      />
+                      <label className="label__text" htmlFor="productSize">
+                        Size
+                      </label>
+                      <input
+                        name="size"
+                        className="input__text"
+                        type="text"
+                        id="productSize"
+                        onChange={e => this.formInputHandler(e)}
+                        value={this.state.size}
+                      />
+                      <label className="label__text" htmlFor="productPrice">
+                        Price
+                      </label>
+                      <input
+                        name="price"
+                        className="input__text"
+                        type="text"
+                        id="productPrice"
+                        onChange={e => this.formInputHandler(e)}
+                        value={this.state.price}
+                      />
+                      <label className="label__area" htmlFor="productDesc">
+                        Description
+                      </label>
+                      <textarea
+                        name="desc"
+                        className="input__area"
+                        id="productDesc"
+                        rows="10"
+                        col="30"
+                        onChange={e => this.formInputHandler(e)}
+                        value={this.state.desc}
+                      />
+                      <input
+                        className="form__submit"
+                        type="submit"
+                        id="submit"
+                        value="Submit"
+                      />
+                      <i
+                        className="fas fa-check-circle checkmark--green"
+                        style={{ transform: "scale(0) rotate(-70deg)" }}
+                      />
+                    </form>
+                    <button
+                      onClick={() => {
+                        // this.feedbackHandler("delete");
+                        this.deleteProductHandler()
+                          .then(() => this.feedbackHandler("delete"))
+                          .catch(() => console.log("error"));
+                      }}
+                      className="button--delete"
+                    >
+                      Delete
+                    </button>
+                  </div>
+                ) : (
+                  <div>
+                    <p>Or choose a product to edit</p>
+                    <i
+                      className="fas fa-check-circle checkmark--red"
+                      style={{ transform: "scale(0) rotate(-70deg)" }}
+                    />
+                  </div>
+                )}
+              </section>
+            </div>
+          ) : (
+            <section className="questions">{questions}</section>
+          )}
         </main>
       </div>
     );

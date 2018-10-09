@@ -435,7 +435,8 @@ table {
     color: #564e58;
     font-size: 15px;
     margin: 35px auto;
-    max-width: 150px; }
+    max-width: 150px;
+    text-transform: uppercase; }
 
 @media screen and (min-width: 1000px) {
   .form__title {
@@ -548,40 +549,68 @@ h1::after {
 .admin {
   color: #686868;
   padding: 100px 0 50px 0; }
-  .admin__controls {
+  .admin__switch-container {
+    width: 250px;
+    display: flex;
+    justify-content: space-evenly;
+    margin: 20px auto; }
+    .admin__switch-container__switch {
+      text-transform: uppercase;
+      border: solid 1px rgba(86, 78, 88, 0.4);
+      color: #3f6d45;
+      background-color: #c3f9c9;
+      font-size: 15px;
+      padding: 10px; }
+  .admin__data .questions .formData {
+    background-color: #fcfcfc;
+    border-radius: 3px;
+    border: solid 1px rgba(86, 78, 88, 0.4);
+    margin: 10px auto 0 auto;
+    max-width: 450px;
+    padding: 10px; }
+    .admin__data .questions .formData h2 {
+      border-bottom: solid 1px #3f6d45;
+      padding-bottom: 10px;
+      text-align: center; }
+    .admin__data .questions .formData__heading {
+      color: #3f6d45;
+      display: block;
+      margin-bottom: 3px;
+      margin-top: 10px; }
+  .admin__data .admin__controls {
     display: flex;
     justify-content: center;
     margin: 0 auto;
     max-width: 600px; }
-    .admin__controls .products__edit {
+    .admin__data .admin__controls .products__edit {
       margin: 30px 20px 0 auto;
       text-align: center; }
-      .admin__controls .products__edit .checkmark--red {
-        font-size: 0;
-        display: block;
+      .admin__data .admin__controls .products__edit .checkmark--red {
         color: red;
+        display: block;
+        font-size: 0;
         margin-top: 10px;
         transition: 0.3s cubic-bezier(0.48, 0.45, 0.62, 1.46); }
-      .admin__controls .products__edit img {
+      .admin__data .admin__controls .products__edit img {
         box-shadow: 3px 3px 5px 0 rgba(0, 0, 0, 0.2);
         height: 210px;
         width: 200px; }
-      .admin__controls .products__edit__form {
+      .admin__data .admin__controls .products__edit__form {
         margin: 0 auto;
         text-align: center;
         max-width: 200px; }
-        .admin__controls .products__edit__form label {
+        .admin__data .admin__controls .products__edit__form label {
           display: block;
           margin-bottom: 5px;
           margin-top: 15px;
           text-align: left; }
-        .admin__controls .products__edit__form .input__text,
-        .admin__controls .products__edit__form .input__area {
+        .admin__data .admin__controls .products__edit__form .input__text,
+        .admin__data .admin__controls .products__edit__form .input__area {
           border: solid 1px rgba(86, 78, 88, 0.4);
           box-shadow: 3px 3px 5px 0 rgba(0, 0, 0, 0.2);
           padding: 5px;
           width: 200px; }
-        .admin__controls .products__edit__form input[type="submit"] {
+        .admin__data .admin__controls .products__edit__form input[type="submit"] {
           background-color: #5ac1e6;
           border-radius: 2px;
           box-shadow: 2px 2px 3px 0 rgba(0, 0, 0, 0.2);
@@ -590,13 +619,13 @@ h1::after {
           margin-top: 15px;
           padding: 10px 30px;
           text-transform: uppercase; }
-        .admin__controls .products__edit__form .checkmark--green {
+        .admin__data .admin__controls .products__edit__form .checkmark--green {
           font-size: 0;
           display: block;
           color: #34b87f;
           margin-top: 10px;
           transition: 0.3s cubic-bezier(0.48, 0.45, 0.62, 1.46); }
-      .admin__controls .products__edit .button--delete {
+      .admin__data .admin__controls .products__edit .button--delete {
         background-color: #f46f58;
         border-radius: 2px;
         box-shadow: 2px 2px 3px 0 rgba(0, 0, 0, 0.2);
@@ -605,7 +634,7 @@ h1::after {
         margin-top: 10px;
         padding: 10px 30px;
         text-transform: uppercase; }
-      .admin__controls .products__edit .button--add {
+      .admin__data .admin__controls .products__edit .button--add {
         background-color: #c3f9c9;
         border-radius: 2px;
         border: solid 1px rgba(0, 0, 0, 0.1);
@@ -614,17 +643,17 @@ h1::after {
         text-transform: uppercase;
         margin-bottom: 20px;
         padding: 10px 30px; }
-    .admin__controls .products__nav {
+    .admin__data .admin__controls .products__nav {
       display: flex;
       flex-direction: column;
       font-size: 14px;
       justify-content: space-evenly;
       text-align: center;
       width: 320px; }
-      .admin__controls .products__nav .product {
+      .admin__data .admin__controls .products__nav .product {
         margin-top: 10px;
         width: 90px; }
-        .admin__controls .products__nav .product img {
+        .admin__data .admin__controls .products__nav .product img {
           box-shadow: 5px 5px 5px 0 rgba(0, 0, 0, 0.2);
           height: 50px;
           width: 40px; }
@@ -632,17 +661,22 @@ h1::after {
 @media screen and (min-width: 700px) {
   .admin {
     padding-top: 150px; }
-    .admin__controls .products__edit img {
+    .admin__data .questions {
+      display: flex;
+      flex-wrap: wrap; }
+      .admin__data .questions .formData {
+        width: 450px; }
+    .admin .admin__controls .products__edit img {
       height: 300px;
       width: 270px; }
-    .admin__controls .products__nav {
+    .admin .admin__controls .products__nav {
       flex-direction: row;
       flex-wrap: wrap;
       width: 350px;
       justify-content: space-evenly; }
-      .admin__controls .products__nav .product {
+      .admin .admin__controls .products__nav .product {
         margin: 20px; }
-        .admin__controls .products__nav .product img {
+        .admin .admin__controls .products__nav .product img {
           height: 110px;
           width: 95px; } }
 

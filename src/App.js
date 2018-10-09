@@ -24,7 +24,8 @@ class App extends Component {
       users: [],
       admins: [],
       activeFilter: null,
-      isLoading: true
+      isLoading: true,
+      questions: []
       // products[i] will have .name .desc .price .pic .size and .id
       // users[i] will have .firstName .lastName .username .password and .id
       // admins[i] will have .firstName .lastName .username .password and .id
@@ -40,6 +41,13 @@ class App extends Component {
           filteredTrees: data.products,
           users: data.users,
           admins: data.admins
+        });
+      });
+    fetch(`http://localhost:3001/questions`)
+      .then(result => result.json())
+      .then(data => {
+        this.setState({
+          questions: data.question
         });
       });
   }
@@ -66,6 +74,7 @@ class App extends Component {
     });
   }
 
+  // adds new product
   submitNewProductHandler(formData) {
     return fetch(`http://localhost:3001/products`, {
       method: "POST",
@@ -88,6 +97,7 @@ class App extends Component {
       });
   }
 
+  // edits existing product
   submitEditHandler(formData, id) {
     return fetch(`http://localhost:3001/products/${id}`, {
       method: "PUT",
@@ -110,6 +120,7 @@ class App extends Component {
       });
   }
 
+  // deletes product
   submitDeleteHandler(id) {
     return fetch(`http://localhost:3001/products/${id}`, {
       method: "DELETE"
@@ -130,6 +141,26 @@ class App extends Component {
       });
   }
 
+  // adds new question
+  submitQuestionHandler(question) {
+    return fetch(`http://localhost:3001/questions`, {
+      method: "POST",
+      body: JSON.stringify(question),
+      headers: { "Content-Type": "application/json" }
+    })
+      .then(res => res.json())
+      .then(data => {
+        this.setState(prevState => {
+          if (prevState.questions !== data) {
+            return {
+              questions: data
+            };
+          }
+        });
+      })
+      .catch(error => console.log(error.message));
+  }
+
   render() {
     return (
       <BrowserRouter>
@@ -137,7 +168,17 @@ class App extends Component {
           <Nav />
           <Switch>
             <Route path="/" component={Home} exact />
-            <Route path="/contact" component={Contact} exact />
+            <Route
+              path="/contact"
+              render={() => (
+                <Contact
+                  postQuestion={question =>
+                    this.submitQuestionHandler(question)
+                  }
+                />
+              )}
+              exact
+            />
 
             <Route
               path="/trees"
@@ -158,6 +199,7 @@ class App extends Component {
               component={Admin}
               exact
               products={this.state.products}
+              questions={this.state.questions}
               requestSuccess={this.state.requestSuccess}
               submitDeleteHandler={id => this.submitDeleteHandler(id)}
               submitEditHandler={(formData, id) =>

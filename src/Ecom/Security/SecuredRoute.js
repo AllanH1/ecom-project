@@ -15,6 +15,7 @@ function SecuredRoute(props) {
         return (
           <Component
             products={props.products}
+            questions={props.questions}
             submitDeleteHandler={id => props.submitDeleteHandler(id)}
             submitEditHandler={(formData, id) =>
               props.submitEditHandler(formData, id)

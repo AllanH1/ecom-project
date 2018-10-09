@@ -35,7 +35,7 @@ const Nav = () => {
             }}
             exact
           >
-            <i className="fas fa-shopping-cart" />
+            <i className="fas fa-store" />
           </NavLink>
         </li>
         <li>
