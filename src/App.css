@@ -436,7 +436,16 @@ table {
     font-size: 15px;
     margin: 35px auto;
     max-width: 150px;
-    text-transform: uppercase; }
+    text-transform: uppercase;
+    transition: 0.2s; }
+
+.checkmark--green {
+  color: #34b87f;
+  transition: 0.3s cubic-bezier(0.48, 0.45, 0.62, 1.46);
+  margin-left: 46.5%;
+  margin-bottom: 30px;
+  font-size: 40px;
+  transform: scale(0) rotate(-70deg); }
 
 @media screen and (min-width: 1000px) {
   .form__title {

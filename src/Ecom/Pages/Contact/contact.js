@@ -15,6 +15,13 @@ const Contact = props => {
     return props.postQuestion(question);
   };
 
+  const formFeedback = () => {
+    let submitButton = document.querySelector(".form__submit");
+    let greenCheck = document.querySelector(".checkmark--green");
+    submitButton.style.transform = "scale(0)";
+    greenCheck.style.transform = "scale(1) rotate(0)";
+  };
+
   return (
     <div>
       <main
@@ -29,7 +36,7 @@ const Contact = props => {
           className="form"
           onSubmit={e =>
             getFormData(e)
-              .then(() => console.log("it works"))
+              .then(() => formFeedback())
               .catch(() => console.log("it doesn't work"))
           }
         >
@@ -70,6 +77,7 @@ const Contact = props => {
           />
           <input className="form__submit" type="submit" id="submit" />
         </form>
+        <i className="fas fa-check-circle checkmark--green" />
       </main>
     </div>
   );

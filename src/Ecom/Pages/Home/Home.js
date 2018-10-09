@@ -6,6 +6,7 @@ const Home = () => {
     arrowScroll();
   };
 
+  // makes arrow disappear after scrolling past a certain point
   const arrowScroll = () => {
     if (window.location.pathname === "/") {
       if (document.documentElement.scrollTop > 200) {
@@ -16,6 +17,7 @@ const Home = () => {
     }
   };
 
+  // when you click on arrow, takes you to next section of page
   const scrollHandler = location => {
     const rect = document.querySelector(location).getBoundingClientRect();
     if (window.innerWidth >= 1000) {
